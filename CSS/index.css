@@ -1,8 +1,20 @@
-.username{
-    float:right;
-    padding: 5px;
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.header{
-    background-color: green;
-    width: 100%;
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff3e0;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #ff9800;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
 }
