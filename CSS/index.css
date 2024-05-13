@@ -1,5 +1,6 @@
-.user{
+.username{
     float:right;
+    padding: 5px;
 }
 .header{
     background-color: green;
