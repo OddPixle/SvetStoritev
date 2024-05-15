@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-    Spletna stran podjetja:<a href="dir/index.php">Muhovic</a>
+    Spletna stran podjetja:<a href="dir/index.php">Muhovic</a><br>
     Moj porjekt: <a href="svetStoritev/index.php">Svet storitev</a>
 
     </div>
