@@ -1,5 +1,7 @@
 <?PHP
 include_once 'seja/seja.php';
+include_once 'baza/baza.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,13 +29,26 @@ include_once 'seja/seja.php';
         <div class="narocanje">
             <form action="#" method="post">
                 <label for="serviceType">Kaj iščete danes:</label>
-                <select id="serviceType" name="serviceType">
-                    <option value="plumbing">Vodovodarji</option>
-                    <option value="electrical">Elektro inštalaterji</option>
-                    <option value="tiling">Keramičarji</option>
+                <select id="serviceType" name="storitev">
+                    <option value="vodovodar">Vodovodarji</option>
+                    <option value="electricar">Elektro inštalaterji</option>
+                    <option value="keramicar">Keramičarji</option>
                 </select>
+                <input type="submit" value="Išči">
                 </form>
         </div>
+        <?PHP
+        if(isset($POST['storitev']));
+        $sql="SELECT * FROM storitveniki st
+              INNER JOIN storitev s ON s.id=st.storitev_id
+              INNER JOIN kraji k ON k.id=st.kraj_id
+              INNER JOIN uporabniki u ON u.id=st.uporabnik_id
+              WHERE s.ime=lower($POST ['storitev'])";
+        for($i=0;$i<10;$i++){
+            echo '<div class="rezultati">';
 
+            echo '</div>';
+        }
+        ?>
     <body>
 </html>
