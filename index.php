@@ -18,6 +18,7 @@ include_once 'baza/baza.php';
             $i=$_SESSION['ime'];
             $p=$_SESSION['priimek'];
             echo '<div>'.$i.' '.$p.'</div>';
+            echo '<a href="uporabniki/settings.php"><img src="uporabljeneSlike/cog.png"></a>';
             echo '<a href="uporabniki/odjava.php">Odjava</a>';
         }else{
             echo '<a href="uporabniki/prijava_uporabnika.php">Priajvite se</a>';
