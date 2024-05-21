@@ -37,7 +37,7 @@ include_once 'baza/baza.php';
                 </form>
         </div>
         <?PHP
-        if(isset($POST['storitev']));
+        if(isset($POST['storitev'])){
         $sql="SELECT * FROM storitveniki st
               INNER JOIN storitev s ON s.id=st.storitev_id
               INNER JOIN kraji k ON k.id=st.kraj_id
@@ -48,6 +48,7 @@ include_once 'baza/baza.php';
                 
             echo '</div>';
         }
+    }
         ?>
     <body>
 </html>
