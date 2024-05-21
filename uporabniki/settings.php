@@ -7,12 +7,8 @@
 </head>
 <body>
     <?PHP
-    if(!isset($_SESSION['ime'])){
         echo $_SESSION['ime'].' '.$_SESSION['priimek'];
         echo '<div><a href="../storitveniki/postanite_storitvenik.php">Postanite storitvenik</a></div>';
-    }else{
-        echo '<a href=prijava_uporabnika.php> Prijavite se </a>';
-    }
     ?>
 </body>
 </html>
