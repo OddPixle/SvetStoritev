@@ -1,7 +1,6 @@
 <?PHP
 include_once 'seja/seja.php';
 include_once 'baza/baza.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,8 +44,8 @@ include_once 'baza/baza.php';
               INNER JOIN uporabniki u ON u.id=st.uporabnik_id
               WHERE s.ime=lower($POST ['storitev'])";
         for($i=0;$i<10;$i++){
-            echo '<div class="rezultati">';
-
+            echo '<div class="storitveniki_prikaz">';
+                
             echo '</div>';
         }
         ?>
