@@ -12,7 +12,7 @@ while($row=mysqli_fetch_array($getEmail)){
     }
 }
 if($g!=$_POST['password1']) header("Location:registracija_uporabnika.php?error=1");
-$pass=sha1($g);
+$pass=password_hash($pass, PASSWORD_DEFAULT);
 $vpis="INSERT INTO uporabniki VALUES (NULL,'$i','$e','$pass','$p')";
 mysqli_query($link,$vpis);
 $structure = '../slike/'.$e;
