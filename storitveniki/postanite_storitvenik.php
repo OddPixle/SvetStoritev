@@ -25,7 +25,7 @@ $kraji=mysqli_query($link,$sql1);
                 echo "</option>";
             }?>
         </select>
-
+<br>
         <select name="storitev" required>
             <?PHP
             while($row=mysqli_fetch_array($stor)){
@@ -35,13 +35,14 @@ $kraji=mysqli_query($link,$sql1);
             }
             ?>
         </select>
-
-        <label for="opis">Dodatne stvari o sebi</label>
+<br>
+        <label for="opis">Dodatne stvari o sebi</label><br>
         <textarea id="opis" name="opis" maxlength="2000">
         </textarea>
-
-        <label for="files">Naloži slike:</label>
-        <input type="file" id="files" name="files" multiple><br><br>
+<br>
+        <label for="slike">Naloži slike:</label><br>
+        <input type="file" id="slike" name="slike" multiple><br><br>
+        <br>
         <input type="submit" value="Naprej">
     </form>
 

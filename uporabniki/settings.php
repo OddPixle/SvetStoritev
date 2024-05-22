@@ -1,3 +1,7 @@
+<?PHP
+include_once '../baza/baza.php';
+include_once '../seja/seja.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

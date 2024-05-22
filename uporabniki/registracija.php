@@ -15,4 +15,8 @@ if($g!=$_POST['password1']) header("Location:registracija_uporabnika.php?error=1
 $pass=sha1($g);
 $vpis="INSERT INTO uporabniki VALUES (NULL,'$i','$e','$pass','$p')";
 mysqli_query($link,$vpis);
+$structure = '../slike/'.$e;
+if (!mkdir($structure, true)) {
+    die('Failed to create directories...');
+}
 header("Location:prijava_uporabnika.php");
