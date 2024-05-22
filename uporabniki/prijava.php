@@ -6,14 +6,14 @@ $email=$_POST['email'];
 $pass=$_POST['pass'];
 //if(!filter_var($pass, FILTER_VALIDATE_EMAIL)){
 $g=password_hash($pass, PASSWORD_DEFAULT);
-$sql="SELECT * FROM uporabniki WHERE email='$email' AND geslo='$g'";
+$sql="SELECT * FROM uporabniki WHERE email='$email'";
 $sql1="SELECT * FROM storitveniki WHERE uporabnik_id=(SELECT id FROM uporabniki WHERE email='$email')";
 $pass=$_POST['pass'];
 $getPass=mysqli_query($link,$sql);
+$row=mysqli_fetch_array($getPass);
 $getStor=mysqli_query($link,$sql);
     if($getPass){
-        if(mysqli_num_rows($getPass)===1){
-            $row=mysqli_fetch_array($getPass);
+        if(password_verify($pass,$row['geslo'])){
                 $_SESSION['ime']=$row['ime'];
                 $_SESSION['priimek']=$row['priimek'];
                 $_SESSION['email']=$email;

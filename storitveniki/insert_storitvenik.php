@@ -1,13 +1,18 @@
 <?php
 require_once '../baza/baza.php';
 require_once '../seja/seja.php';
-
+//Dobi stvari iz POST. Storitev in kraj je že kot id
+$email=$_SESSION['email'];
+$stor=$_POST['storitev'];
+$kraj=$_POST['kraj'];
+$opis=$_POST['opis'];
 $insert="INSERT INTO storitveniki (uporabnik_id, storitev_id, kraj_id, dodatki)
-    VALUES((SELECT id FROM uporabniki WHERE email='".$_SESSION['email']."'), ". $_POST['storitev'].", ". $_POST['kraj'].", '".$_POST['opis']."';";
-//mysqli_query($link,$insert);
+    VALUES((SELECT id FROM uporabniki WHERE email='$email'), $stor, $kraj, '$opis');";
 echo $insert;
+
+mysqli_query($link,$insert);
 //Slike, dobljeno iz https://www.w3schools.com/php/php_file_upload.asp
-$target_dir = "../slike/".$_SESSION['email']."/";
+$target_dir = "../slike/$email/";
 $target_file = $target_dir . basename($_FILES["slike"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -45,29 +50,20 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-  echo "<br>Sorry, your file was not uploaded.";
+  echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
 
-
-  foreach ($_FILES["slike"]["error"] as $key => $error) {
-    if ($error == UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES["slike"]["tmp_name"][$key];
-        // basename() may prevent filesystem traversal attacks;
-        // further validation/sanitation of the filename may be appropriate
-        $name = basename($_FILES["slike"]["name"][$key]);
-        if (move_uploaded_file($_FILES["slike"]["tmp_name"], $target_file)) {
-          echo "<br> The file ". htmlspecialchars( basename( $_FILES["slike"]["name"])). " has been uploaded.";
-      //insertaj link od slik
-          $insert_slike="INSERT INTO slike_storitveniki (filename, storitvenik_id)
-          VALUES ($target_file, (SELECT id FROM storitveniki WHERE uporabnik_id=(SELECT ID FROM uporabniki WHERE email=".$_POST['email']."))";
-          //mysqli_query($link,$insert_slike);
-          echo $insert_slike;
-        } else {
-          echo "<br> Sorry, there was an error uploading your file.";
-        };
-    }
-}
-  //header("Refresh:3;URL=index.php");
+  $sql2="INSERT INTO slike_storitveniki (filename, storitvenik_id)
+VALUES ($target_file, (SELECT id FROM storitveniki s INNER JOIN uporabniki u ON u.id=s.storitvenik_id WHERE email='$email'));";
+echo $sql2;
+mkdir($target_dir);
+mysqli_query($link,$insert);
+  if (move_uploaded_file($_FILES["slike"]["tmp_name"], $target_file)&&mysqli_query($link,$sql2)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["slike"]["name"])). " has been uploaded.";
+    
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
 }
 ?>

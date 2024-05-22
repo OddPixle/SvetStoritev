@@ -15,7 +15,7 @@ $kraji=mysqli_query($link,$sql1);
     <title>Svet storitev</title>
 </head>
 <body>
-    <form action="insert_storitvenik.php" method="POST">
+    <form action="insert_storitvenik.php" method="POST" enctype="multipart/form-data">
         
         <select name="kraj" required>
             <?PHP 
