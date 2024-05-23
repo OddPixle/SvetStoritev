@@ -13,7 +13,10 @@ include_once '../seja/seja.php';
     <h1>Nastavitve</h1>
     <?PHP
         echo $_SESSION['ime'].' '.$_SESSION['priimek'];
+        if($_SESSION['jeStoritvenik']){
         echo '<div><a href="../storitveniki/postanite_storitvenik.php">Postanite storitvenik</a></div>';
+        }
     ?>
+    <a class="gumb" href="../index.php">Nazaj</a>
 </body>
 </html>
