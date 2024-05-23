@@ -10,6 +10,7 @@ include_once '../seja/seja.php';
     <title>Svet storitev</title>
 </head>
 <body>
+    <h1>Nastavitve</h1>
     <?PHP
         echo $_SESSION['ime'].' '.$_SESSION['priimek'];
         echo '<div><a href="../storitveniki/postanite_storitvenik.php">Postanite storitvenik</a></div>';

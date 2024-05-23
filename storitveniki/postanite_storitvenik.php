@@ -27,13 +27,10 @@ $kraji=mysqli_query($link,$sql1);
         </select>
 <br>
         <select name="storitev" required>
-            <?PHP
-            while($row=mysqli_fetch_array($stor)){
-                echo "<option value=".$row['id'].">";
-                echo $row ['ime'];
-                echo "</option>";
-            }
-            ?>
+        <select id="serviceType" name="storitev">
+                    <option value="vodovodar">Vodovodar/ka</option>
+                    <option value="keramicar">Keramičar/ka</option>
+                </select>
         </select>
 <br>
         <label for="opis">Dodatne stvari o sebi</label><br>

@@ -51,19 +51,18 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
   echo "Sorry, your file was not uploaded.";
+  header("Refresh:3;Location:postanite_storitvenik.php");   
 // if everything is ok, try to upload file
 } else {
 
   $sql2="INSERT INTO slike_storitveniki (filename, storitvenik_id)
 VALUES ($target_file, (SELECT id FROM storitveniki s INNER JOIN uporabniki u ON u.id=s.storitvenik_id WHERE email='$email'));";
-echo $sql2;
 mkdir($target_dir);
-mysqli_query($link,$insert);
-  if (move_uploaded_file($_FILES["slike"]["tmp_name"], $target_file)&&mysqli_query($link,$sql2)) {
-    echo "The file ". htmlspecialchars( basename( $_FILES["slike"]["name"])). " has been uploaded.";
-    
+  if (move_uploaded_file($_FILES["slike"]["tmp_name"], $target_file)&&mysqli_query($link,$sql2)&&mysqli_query($link,$insert)  ) {
+    header("Location:settings.php"); 
+
   } else {
     echo "Sorry, there was an error uploading your file.";
+    header("Refresh:3;Location:postanite_storitvenik.php");   
   }
 }
-?>

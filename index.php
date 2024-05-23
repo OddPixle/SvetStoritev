@@ -31,20 +31,20 @@ include_once 'baza/baza.php';
                 <label for="serviceType">Kaj iščete danes:</label>
                 <select id="serviceType" name="storitev">
                     <option value="vodovodar">Vodovodarji</option>
-                    <option value="electricar">Elektro inštalaterji</option>
                     <option value="keramicar">Keramičarji</option>
                 </select>
                 <input type="submit" value="Išči">
                 </form>
         </div>
         <?PHP
-        if(isset($POST['storitev'])){
+    if(isset($_POST['storitev'])){
         $sql="SELECT * FROM storitveniki st
               INNER JOIN storitev s ON s.id=st.storitev_id
               INNER JOIN kraji k ON k.id=st.kraj_id
               INNER JOIN uporabniki u ON u.id=st.uporabnik_id
-              WHERE s.ime=lower($POST ['storitev'])";
-        for($i=0;$i<10;$i++){
+              WHERE s.ime=lower('".$_POST ['storitev']."')";
+        $storitveniki=mysqli_query($link,$sql);
+        foreach(mysqli_fetch_array($storitveniki) as $prikaz){
             echo '<div class="storitveniki_prikaz">';
                 
             echo '</div>';

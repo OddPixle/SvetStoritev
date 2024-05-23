@@ -2,9 +2,9 @@
 require_once '../baza/baza.php';
 include_once '../seja/seja.php';
 $email=$_POST['email'];
-//if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+if(filter_var($email, FILTER_VALIDATE_EMAIL)){
 $pass=$_POST['pass'];
-//if(!filter_var($pass, FILTER_VALIDATE_EMAIL)){
+if(filter_var($pass)){
 $g=password_hash($pass, PASSWORD_DEFAULT);
 $sql="SELECT * FROM uporabniki WHERE email='$email'";
 $sql1="SELECT * FROM storitveniki WHERE uporabnik_id=(SELECT id FROM uporabniki WHERE email='$email')";
@@ -31,9 +31,9 @@ $getStor=mysqli_query($link,$sql);
     }else{
         echo 'Napaka pri izvajanju poizvedbe';
     }
-/*}else{
+}else{
     echo 'Prišlo je do napake pri obliki gesla';
 }
 }else{
     echo 'Prišlo je do napake pri emailu. (Vnos ni pravilne oblike)';
-}*/
+}
