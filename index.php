@@ -17,8 +17,8 @@ include_once 'baza/baza.php';
         if(isset($_SESSION['ime']) AND ($_SESSION['priimek'])){
             $i=$_SESSION['ime'];
             $p=$_SESSION['priimek'];
-            echo '<div>'.$i.' '.$p.'</div>';
-            echo '<a href="uporabniki/settings.php"><img src="uporabljeneSlike/cog.png"></a>';
+            echo '<div class="user">'.$i.' '.$p.'</div>';
+            echo '<a href="uporabniki/settings.php"><img class="settings" src="uporabljeneSlike/cog.png"></a>';
             echo '<a href="uporabniki/odjava.php">Odjava</a>';
         }else{
             echo '<a href="uporabniki/prijava_uporabnika.php">Priajvite se</a>';
@@ -32,25 +32,32 @@ include_once 'baza/baza.php';
                 <select id="serviceType" name="storitev">
                     <option value="vodovodar">Vodovodarji</option>
                     <option value="keramicar">Keramičarji</option>
-                </select>
+                </select>       
                 <input type="submit" value="Išči">
                 </form>
         </div>
+        Page še ni oblikovan.<br>
         <?PHP
     if(isset($_POST['storitev'])){
-        $sql="SELECT * FROM storitveniki st
+        $sql="SELECT k.ime, s.ime, st.dodatki, sl.filename, u.ime, u.priimek FROM storitveniki st
               INNER JOIN storitev s ON s.id=st.storitev_id
               INNER JOIN kraji k ON k.id=st.kraj_id
               INNER JOIN uporabniki u ON u.id=st.uporabnik_id
+              INNER JOIN slike_storitveniki sl ON s.id=sl.storitvenik_id
               WHERE s.ime=lower('".$_POST ['storitev']."')";
         $storitveniki=mysqli_query($link,$sql);
+        if(mysqli_num_rows($storitveniki)){
         foreach(mysqli_fetch_array($storitveniki) as $prikaz){
             echo '<div class="storitveniki_prikaz">';
-                
+            echo '<img src="'.$prikez['filename'].'>';
+
             echo '</div>';
         }
     }else{
-        echo 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum lacus nec leo commodo, vitae interdum magna 
+        echo 'Tukaj še ni storitvenikiv.';
+    }
+    }else{
+        echo '<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum lacus nec leo commodo, vitae interdum magna 
         ornare. Vestibulum a erat a dui viverra ultrices. Vestibulum posuere tincidunt gravida. Nulla ut odio semper, molestie nisi et, 
         faucibus risus. Pellentesque mollis ante ac iaculis vestibulum. Phasellus tempor, nisl ut venenatis vehicula, sem ante convallis
          enim, eget auctor neque diam sit amet augue. Nulla tristique, leo vel molestie mattis, elit nunc tempor odio, ac convallis sem 
@@ -67,7 +74,7 @@ include_once 'baza/baza.php';
         Phasellus id quam ac est condimentum suscipit placerat quis sapien. Vivamus efficitur libero et mauris consectetur sagittis. 
         Duis erat elit, condimentum et convallis sit amet, laoreet ut nisi. Mauris eu libero vitae eros vulputate sagittis a sit amet 
         enim. Nunc facilisis arcu in pellentesque tempor. Sed ornare, sem nec luctus dignissim, dui purus sagittis ante, vel rutrum 
-        quam nisi sed velit.';
+        quam nisi sed velit.</div>';
     }
         ?>
     <body>

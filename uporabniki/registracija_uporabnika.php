@@ -19,7 +19,7 @@ require_once '../baza/baza.php';
     <form action="registracija.php" method="POST">
         <input type="text" name="ime" placeholder="Ime" required><br>
         <input type="text" name="priimek" placeholder="Priimek" required><br>
-        <input type="email" name="mail" placeholder="E-mail" required><br>
+        <input type="email" name="email" placeholder="E-mail" required><br>
         <input type="password" name="password0" placeholder="Geslo" required><br>
         <input type="password" name="password1" placeholder="Ponovite geslo" required><br>
             <input type="submit" name="sub" value="Registriraj se">

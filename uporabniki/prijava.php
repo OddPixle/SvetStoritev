@@ -1,39 +1,28 @@
 <?PHP
 require_once '../baza/baza.php';
 include_once '../seja/seja.php';
-$email=$_POST['email'];
-if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-$pass=$_POST['pass'];
-if(filter_var($pass)){
-$g=password_hash($pass, PASSWORD_DEFAULT);
-$sql="SELECT * FROM uporabniki WHERE email='$email'";
-$sql1="SELECT * FROM storitveniki WHERE uporabnik_id=(SELECT id FROM uporabniki WHERE email='$email')";
-$pass=$_POST['pass'];
+$e=filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+$g=filter_var($_POST['pass'], FILTER_SANITIZE_STRING);
+if(filter_var($e, FILTER_VALIDATE_EMAIL)){
+$sql="SELECT * FROM uporabniki WHERE email='$e'";
 $getPass=mysqli_query($link,$sql);
 $row=mysqli_fetch_array($getPass);
-$getStor=mysqli_query($link,$sql);
     if($getPass){
-        if(password_verify($pass,$row['geslo'])){
+        echo 'GetPass';
+        if(password_verify($g, $row['geslo'])){
                 $_SESSION['ime']=$row['ime'];
                 $_SESSION['priimek']=$row['priimek'];
                 $_SESSION['email']=$email;
-                //a je ta uporabnik storitvenik
-                if(mysqli_num_rows($getStor)===1){
-                    $_SESSION['jeStoritvenik']=TRUE;
-                }else{
-                    $_SESSION['jeStoritvenik']=FALSE;
-                }
-                header("Refresh:1;URL=../index.php");
+                header("URL=../index.php");
         }else{
-                echo "Nepravilno podatki";
-                header("Refresh:3;URL=prijava_uporbnika.php");
+                echo "Nepravilni podatki";
+                //header("Refresh:3; URL=prijava_uporabnika.php");
         }
     }else{
         echo 'Napaka pri izvajanju poizvedbe';
+        //header("Refresh:3; URL=prijava_uporabnika.php");
     }
 }else{
-    echo 'Prišlo je do napake pri obliki gesla';
-}
-}else{
     echo 'Prišlo je do napake pri emailu. (Vnos ni pravilne oblike)';
+    //header("Refresh:3; URL=prijava_uporabnika.php");
 }
