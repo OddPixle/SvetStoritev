@@ -25,6 +25,7 @@ a{
 }
 .upime{
     float: right;
+    padding: 3px;
 }
 .storitveniki_prikaz{
     border: 1px black dotted;

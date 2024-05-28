@@ -17,7 +17,7 @@ if(filter_var($e, FILTER_VALIDATE_EMAIL)){
 
 $getEmail=mysqli_query($link,$sqlcheck);
 while($row=mysqli_fetch_array($getEmail)){
-    if($e==$row['mail']){
+    if($e==$row['email']){
         header("Location:registracija_uporabnika.php?error=0");
     }
 }

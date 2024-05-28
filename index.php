@@ -14,7 +14,7 @@ include_once 'baza/baza.php';
         <div class="upime">
         <?PHP
         //username
-        if(isset($_SESSION['ime']) AND ($_SESSION['priimek'])){
+        if(isset($_SESSION['ime'])){
             $i=$_SESSION['ime'];
             $p=$_SESSION['priimek'];
             echo '<div class="user">'.$i.' '.$p.'</div>';
