@@ -1,12 +1,6 @@
 <?PHP
 require_once '../baza/baza.php';
 $sqlcheck="SELECT email FROM uporabniki";
-$ime=$_POST['ime'];
-$priimek=$_POST['priimek'];
-$email=$_POST['email'];
-$geslo=$_POST['password0'];
-echo $geslo;
-$gesloCheck=$_POST['password1'];
 $e=filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $g=filter_var($_POST['password0'], FILTER_SANITIZE_STRING);
 $i=filter_var($_POST['ime'], FILTER_SANITIZE_STRING);
