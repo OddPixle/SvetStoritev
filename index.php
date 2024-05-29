@@ -7,10 +7,11 @@ include_once 'baza/baza.php';
     <head>
         <title>Svet storitev</title>
         <link rel="stylesheet" href="CSS/index.css">
+        <link rel="stylesheet" href="CSS/main.css">
     </head>
     <body>
         <div class="header">
-        <h1>Svet storitev</h1>
+        <h1 class="naslov">Svet storitev</h1>
         <div class="upime">
         <?PHP
         //username
@@ -19,9 +20,9 @@ include_once 'baza/baza.php';
             $p=$_SESSION['priimek'];
             echo '<div class="user">'.$i.' '.$p.'</div>';
             echo '<a href="uporabniki/settings.php"><img class="settings" src="uporabljeneSlike/cog.png"></a>';
-            echo '<a href="uporabniki/odjava.php">Odjava</a>';
+            echo '<a href="uporabniki/odjava.php" class="button">Odjava</a>';
         }else{
-            echo '<a href="uporabniki/prijava_uporabnika.php">Priajvite se</a>';
+            echo '<a href="uporabniki/prijava_uporabnika.php" class="button">Priajvite se</a>';
         }
         ?>
         </div>
@@ -36,7 +37,6 @@ include_once 'baza/baza.php';
                 <input type="submit" value="Išči">
                 </form>
         </div>
-        Page še ni oblikovan.<br>
         <?PHP
     if(isset($_POST['storitev'])){
         $sql="SELECT k.ime, s.ime, st.dodatki, sl.filename, u.ime, u.priimek FROM storitveniki st

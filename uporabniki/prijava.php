@@ -2,7 +2,7 @@
 require_once '../baza/baza.php';
 include_once '../seja/seja.php';
 $email=$_POST['email'];
-$gesol=$_POST['geslo'];
+$geslo=$_POST['geslo'];
 $e = filter_var($email, FILTER_SANITIZE_EMAIL);
 $g = filter_var($geslo, FILTER_SANITIZE_STRING);
 if (filter_var($e, FILTER_VALIDATE_EMAIL)) {
