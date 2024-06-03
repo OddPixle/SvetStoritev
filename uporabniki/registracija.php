@@ -16,7 +16,7 @@ while($row=mysqli_fetch_array($getEmail)){
     }
 }
 if($g!=$gc) header("Location:registracija_uporabnika.php?error=1");
-$pass=password_hash($pass, PASSWORD_DEFAULT);
+$pass=password_hash($g, PASSWORD_DEFAULT);
 $vpis="INSERT INTO uporabniki (ime, priimek, email, geslo) VALUES ('$i','$p','$e','$pass')";
 mysqli_query($link,$vpis);
 header("Location:prijava_uporabnika.php");

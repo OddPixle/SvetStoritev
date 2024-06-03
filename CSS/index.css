@@ -7,6 +7,7 @@
 }
 .upime{
     padding: 3px;
+    float: right;
 }
 .storitveniki_prikaz{
     border: 1px black dotted;
@@ -23,7 +24,6 @@
     height: 50px;
 }
 .user{
-    background-color: blanchedalmond;
     color: black;
 }
 .header{

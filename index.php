@@ -39,23 +39,27 @@ include_once 'baza/baza.php';
         </div>
         <?PHP
     if(isset($_POST['storitev'])){
-        $sql="SELECT k.ime, s.ime, st.dodatki, sl.filename, u.ime, u.priimek FROM storitveniki st
+        $sql="SELECT st.id, k.ime, s.ime, st.dodatki, u.ime, u.priimek FROM storitveniki st
               INNER JOIN storitev s ON s.id=st.storitev_id
               INNER JOIN kraji k ON k.id=st.kraj_id
               INNER JOIN uporabniki u ON u.id=st.uporabnik_id
-              INNER JOIN slike_storitveniki sl ON s.id=sl.storitvenik_id
               WHERE s.ime=lower('".$_POST ['storitev']."')";
         $storitveniki=mysqli_query($link,$sql);
         if(mysqli_num_rows($storitveniki)){
         foreach(mysqli_fetch_array($storitveniki) as $prikaz){
+            $sqlSlike="SELECT filename FROM slike_strotveniki WHERE storitvenik_id='".$prikaz['id']."'";
+            $slike=mysqli_query($link, $sqlSlike);
             echo '<div class="storitveniki_prikaz">';
-            echo '<img src="'.$prikez['filename'].'>';
-
+            foreach(mysqli_fetch_array($slike) as $slike){
+            echo '<img src="'.$slike['filename'].'>';
+            }
+            echo "<div class='ime'>".$prikaz['u.ime']." ".$prikaz['u.priimek']."</div>";
+            echo "";
             echo '</div>';
         }
-    }else{
-        echo 'Tukaj še ni storitvenikiv.';
-    }
+        }else{
+            echo 'Tukaj še ni storitvenikiv.';
+        }
     }else{
         echo '<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum lacus nec leo commodo, vitae interdum magna 
         ornare. Vestibulum a erat a dui viverra ultrices. Vestibulum posuere tincidunt gravida. Nulla ut odio semper, molestie nisi et, 
