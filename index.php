@@ -6,13 +6,16 @@ include_once 'baza/baza.php';
 <html>
     <head>
         <title>Svet storitev</title>
-        <link rel="stylesheet" href="CSS/index.css">
-        <link rel="stylesheet" href="CSS/main.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-        <div class="header">
-        <h1 class="naslov">Svet storitev</h1>
-        <div class="upime">
+        <div class=".container-fluid">
+        <div class="row">
+        <h1 class="col-sm-10">Svet storitev</h1>
+        <div class="col-sm-2 text-center margin-auto">
         <?PHP
         //username
         if(isset($_SESSION['ime'])){
@@ -22,12 +25,13 @@ include_once 'baza/baza.php';
             echo '<a href="uporabniki/settings.php"><img class="settings" src="uporabljeneSlike/cog.png"></a>';
             echo '<a href="uporabniki/odjava.php" class="button">Odjava</a>';
         }else{
-            echo '<a href="uporabniki/prijava_uporabnika.php" class="button">Priajvite se</a>';
+            echo '<a href="uporabniki/prijava_uporabnika.php" class="btn btn-primary">Priajvite se</a>';
         }
         ?>
         </div>
         </div>
-        <div class="narocanje">
+        </div>
+        <div class=".container">
             <form action="#" method="post">
                 <label for="serviceType">Kaj iščete danes:</label>
                 <select id="serviceType" name="storitev">
