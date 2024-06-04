@@ -7,6 +7,7 @@ include_once 'baza/baza.php';
     <head>
         <title>Svet storitev</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="CSS/main.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -54,8 +55,15 @@ include_once 'baza/baza.php';
             $sqlSlike="SELECT filename FROM slike_strotveniki WHERE storitvenik_id='".$prikaz['id']."'";
             $slike=mysqli_query($link, $sqlSlike);
             echo '<div class="storitveniki_prikaz">';
+            //slideshow
+            $count=0;
+            $all=count($slike);
             foreach(mysqli_fetch_array($slike) as $slike){
-            echo '<img src="'.$slike['filename'].'>';
+                $count++;
+                echo'<div class="mySlides fade">
+                <div class="numbertext">'.$count.' /'.$all.'</div>
+                <img src="'.$slike['filename'].'" style="width:100%">
+              </div>';
             }
             echo "<div class='ime'>".$prikaz['u.ime']." ".$prikaz['u.priimek']."</div>";
             echo "";
@@ -65,7 +73,7 @@ include_once 'baza/baza.php';
             echo 'Tukaj še ni storitvenikiv.';
         }
     }else{
-        echo '<div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum lacus nec leo commodo, vitae interdum magna 
+        echo '<div class=".container"><div class="row justify-content-center"><div class="col-md-10 custom-bg"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas bibendum lacus nec leo commodo, vitae interdum magna 
         ornare. Vestibulum a erat a dui viverra ultrices. Vestibulum posuere tincidunt gravida. Nulla ut odio semper, molestie nisi et, 
         faucibus risus. Pellentesque mollis ante ac iaculis vestibulum. Phasellus tempor, nisl ut venenatis vehicula, sem ante convallis
          enim, eget auctor neque diam sit amet augue. Nulla tristique, leo vel molestie mattis, elit nunc tempor odio, ac convallis sem 
@@ -82,7 +90,7 @@ include_once 'baza/baza.php';
         Phasellus id quam ac est condimentum suscipit placerat quis sapien. Vivamus efficitur libero et mauris consectetur sagittis. 
         Duis erat elit, condimentum et convallis sit amet, laoreet ut nisi. Mauris eu libero vitae eros vulputate sagittis a sit amet 
         enim. Nunc facilisis arcu in pellentesque tempor. Sed ornare, sem nec luctus dignissim, dui purus sagittis ante, vel rutrum 
-        quam nisi sed velit.</div>';
+        quam nisi sed velit.</div></div></div>';
     }
         ?>
     <body>
