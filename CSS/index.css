@@ -1,32 +1,7 @@
-.button{
-    text-decoration: none;
-    color: white;
-    padding: 5px;
-    background-color:red;
-    margin: 30px;
-}
-.upime{
-    padding: 3px;
-    float: right;
-}
-.storitveniki_prikaz{
-    border: 1px black dotted;
-}
-.content{
-    width: 75%;
-    margin: 10px;
-    float: left;
-    border: 3px black solid;
-    background-color: white;
+*{
+    background-color: lightyellow;
 }
 .settings{
     width: 50px;
     height: 50px;
-}
-.user{
-    color: black;
-}
-.header{
-    display: flex;
-    justify-content:space-between;
 }

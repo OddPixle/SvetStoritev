@@ -12,8 +12,9 @@ include_once '../seja/seja.php';
 <body>
     <h1>Nastavitve</h1>
     <?PHP
-        echo $_SESSION['ime'].' '.$_SESSION['priimek'];
-        if($_SESSION['jeStoritvenik']){
+    $sql="SELECT * FROM storitveniki WHERE uporabnik_id=(SELECT id FROM uporabniki WHERE email='".$_SESSION['email']."');";
+    $result=mysqli_query($link,$sql);
+        if($result!=NULL){
         echo '<div><a href="../storitveniki/postanite_storitvenik.php">Postanite storitvenik</a></div>';
         }
     ?>

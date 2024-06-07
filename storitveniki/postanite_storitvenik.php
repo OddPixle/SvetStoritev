@@ -19,23 +19,26 @@ $kraji=mysqli_query($link,$sql1);
         
         <select name="kraj" required>
             <?PHP 
-                while($row=mysqli_fetch_array($kraji)){
+            while($row=mysqli_fetch_array($kraji)){
                 echo "<option value=".$row['id'].">";
                 echo $row ['ime'];
                 echo "</option>";
-            }?>
+            }
+            ?>
         </select>
 <br>
-        <select name="storitev" required>
-        <select id="serviceType" name="storitev">
-                    <option value="vodovodar">Vodovodar/ka</option>
-                    <option value="keramicar">Keramičar/ka</option>
-                </select>
+        <select id="serviceType" name="storitev" required>
+            <?PHP
+            while($row=mysqli_fetch_array($stor)){
+                echo "<option value=".$row['id'].">";
+                echo $row ['ime'];
+                echo "</option>";
+            }
+            ?>
         </select>
 <br>
         <label for="opis">Dodatne stvari o sebi</label><br>
-        <textarea id="opis" name="opis" maxlength="2000">
-        </textarea>
+        <textarea id="opis" name="opis" maxlength="2000"></textarea>
 <br>
         <label for="slike">Naloži slike:</label><br>
         <input type="file" id="slike" name="slike" multiple><br><br>

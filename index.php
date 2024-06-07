@@ -8,6 +8,7 @@ include_once 'baza/baza.php';
         <title>Svet storitev</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="CSS/main.css">
+        <link rel="stylesheet" href="CSS/index.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -15,24 +16,22 @@ include_once 'baza/baza.php';
     <body>
         <div class=".container-fluid">
         <div class="row">
-        <h1 class="col-sm-10">Svet storitev</h1>
-        <div class="col-sm-2 text-center margin-auto">
+        <h1 class="col-sm-9">Svet storitev</h1>
         <?PHP
         //username
         if(isset($_SESSION['ime'])){
             $i=$_SESSION['ime'];
             $p=$_SESSION['priimek'];
-            echo '<div class="user">'.$i.' '.$p.'</div>';
-            echo '<a href="uporabniki/settings.php"><img class="settings" src="uporabljeneSlike/cog.png"></a>';
-            echo '<a href="uporabniki/odjava.php" class="button">Odjava</a>';
+            echo '<div class="col-sm-1 text-center margin-auto">'.$i.' '.$p.'</div>';
+            echo '<a href="uporabniki/settings.php" class="col-sm-1 text-center margin-auto"><img class="settings" src="uporabljeneSlike/cog.png"></a>';
+            echo '<a href="uporabniki/odjava.php" class="btn btn-primary scol-sm-1 text-center margin-auto">Odjava</a>';
         }else{
             echo '<a href="uporabniki/prijava_uporabnika.php" class="btn btn-primary">Priajvite se</a>';
         }
         ?>
         </div>
         </div>
-        </div>
-        <div class=".container">
+        <div class=".container-fluid">
             <form action="#" method="post">
                 <label for="serviceType">Kaj iščete danes:</label>
                 <select id="serviceType" name="storitev">
@@ -40,33 +39,35 @@ include_once 'baza/baza.php';
                     <option value="keramicar">Keramičarji</option>
                 </select>       
                 <input type="submit" value="Išči">
-                </form>
+            </form>
         </div>
         <?PHP
     if(isset($_POST['storitev'])){
-        $sql="SELECT st.id, k.ime, s.ime, st.dodatki, u.ime, u.priimek FROM storitveniki st
+        $sql="SELECT st.id, k.ime as kraj, s.ime as storitev, st.dodatki, u.ime, u.priimek FROM storitveniki st
               INNER JOIN storitev s ON s.id=st.storitev_id
               INNER JOIN kraji k ON k.id=st.kraj_id
               INNER JOIN uporabniki u ON u.id=st.uporabnik_id
               WHERE s.ime=lower('".$_POST ['storitev']."')";
         $storitveniki=mysqli_query($link,$sql);
         if(mysqli_num_rows($storitveniki)){
-        foreach(mysqli_fetch_array($storitveniki) as $prikaz){
-            $sqlSlike="SELECT filename FROM slike_strotveniki WHERE storitvenik_id='".$prikaz['id']."'";
+            while($prikaz=mysqli_fetch_array($storitveniki)){
+            $sqlSlike="SELECT filename FROM slike_storitveniki WHERE storitvenik_id='".$prikaz['id']."'";
             $slike=mysqli_query($link, $sqlSlike);
             echo '<div class="storitveniki_prikaz">';
             //slideshow
             $count=0;
-            $all=count($slike);
-            foreach(mysqli_fetch_array($slike) as $slike){
+            $all=5;
+            while($row=mysqli_fetch_array($slike)){
                 $count++;
                 echo'<div class="mySlides fade">
                 <div class="numbertext">'.$count.' /'.$all.'</div>
-                <img src="'.$slike['filename'].'" style="width:100%">
+                <img src="'.$row['filename'].'" style="width:100%">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
               </div>';
             }
-            echo "<div class='ime'>".$prikaz['u.ime']." ".$prikaz['u.priimek']."</div>";
-            echo "";
+            echo "<div class='ime'>".$prikaz['ime']." ".$prikaz['priimek']."</div>";
+            echo $prikaz['dodatki'];
             echo '</div>';
         }
         }else{
@@ -93,5 +94,25 @@ include_once 'baza/baza.php';
         quam nisi sed velit.</div></div></div>';
     }
         ?>
+<!--slideshow delovanje-->
+        <script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slides");
+    if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex-1].style.display = "block";
+}
+</script>
     <body>
 </html>
