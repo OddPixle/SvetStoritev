@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+.registration-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+.registration-form h1 {
+    margin-bottom: 20px;
+    color: #fd7e14;
+}
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
+    margin-bottom: 10px;
+}
+.registration-form input[type="submit"] {
+    background-color: #fd7e14;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+.registration-form input[type="submit"]:hover {
+    background-color: #e76d10;
+}
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}

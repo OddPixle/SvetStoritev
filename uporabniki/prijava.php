@@ -21,7 +21,7 @@ if (filter_var($e, FILTER_VALIDATE_EMAIL)) {
                 // header("Refresh:3; URL=prijava_uporabnika.php");
             }
         } else {
-            echo 'Uporabnik ne obstaja';
+            echo "Nepravilni podatki";
             // header("Refresh:3; URL=prijava_uporabnika.php");
         }
     } else {
