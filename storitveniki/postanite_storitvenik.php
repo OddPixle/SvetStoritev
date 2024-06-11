@@ -41,7 +41,7 @@ $kraji=mysqli_query($link,$sql1);
         <textarea id="opis" name="opis" maxlength="2000"></textarea>
 <br>
         <label for="slike">Naloži slike:</label><br>
-        <input type="file" id="slike" name="slike" multiple><br><br>
+        <input type="file" id="slike" name="slike[]" multiple><br><br>
         <br>
         <input type="submit" value="Naprej">
     </form>

@@ -22,58 +22,68 @@ if (!file_exists($target_dir)) {
     mkdir($target_dir, 0777, true);
 }
 
-foreach ($_FILES as $key => $tmp_name) {
-    $target_file = $target_dir . basename($_FILES['slike']['name'][$key]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+// Ensure $_FILES['slike']['name'] is an array
+if (is_array($_FILES['slike']['name'])) {
+    foreach ($_FILES['slike']['name'] as $key => $name) {
+        $tmp_name = $_FILES['slike']['tmp_name'][$key];
+        $potDoFila="slike/$email/";
+        $target_file = $target_dir . basename($name);
+        $potDoFila = $potDoFila . basename($name);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check if image file is an actual image or fake image
-    $check = getimagesize($tmp_name);
-    if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
+        // Check if image file is an actual image or fake image
+        $check = getimagesize($tmp_name);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
 
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
+        // Check if file already exists
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
 
-    // Check file size
-    if ($_FILES['slike']['size'][$key] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
+        // Check file size
+        if ($_FILES['slike']['size'][$key] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
 
-    // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
 
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    } else {
-        if (move_uploaded_file($tmp_name, $target_file)) {
-            // Insert into slike_storitveniki table
-            $sql2 = "INSERT INTO slike_storitveniki (filename, storitvenik_id) VALUES (?, ?);";
-            $stmt2 = mysqli_prepare($link, $sql2);
-            mysqli_stmt_bind_param($stmt2, 'si', $target_file, $storitvenik_id);
-            mysqli_stmt_execute($stmt2);
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($tmp_name, $target_file)) {
+                // Insert into slike_storitveniki table
+                $sql2 = "INSERT INTO slike_storitveniki (pot, storitvenik_id) VALUES (?, ?);";
+                $stmt2 = mysqli_prepare($link, $sql2);
+                echo $potDoFila;
+                mysqli_stmt_bind_param($stmt2, 'si', $potDoFila, $storitvenik_id);
+                mysqli_stmt_execute($stmt2);
 
-            if (mysqli_stmt_affected_rows($stmt2) > 0) {
-                echo "The file " . htmlspecialchars(basename($_FILES['slike']['name'][$key])) . " has been uploaded.";
+                if (mysqli_stmt_affected_rows($stmt2) > 0) {
+                    echo "The file " . htmlspecialchars(basename($name)) . " has been uploaded.";
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
-        } else {
-            echo "Sorry, there was an error uploading your file.";
         }
     }
+} else {
+    echo "No files were uploaded.";
 }
 
 header("Refresh:3;Location:postanite_storitvenik.php");
+
