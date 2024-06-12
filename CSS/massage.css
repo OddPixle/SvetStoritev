@@ -1,0 +1,10 @@
+.content-userSpo{
+    border: 1px black solid;
+    background-color: lightgray;
+    float: left;
+}
+.content-storSpo{
+    border: 1px black solid;
+    background-color: lightsalmon;
+    float:right;
+}

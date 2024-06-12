@@ -30,6 +30,11 @@ include_once 'baza/baza.php';
             ?>
         </div>
     </div>
+<?PHP
+                if(isset($_SESSION['rank'])&&$_SESSION['rank']==='admin'){
+                    echo '<div class=".container-admin"><a href="admin/admin.php" class="btn btn-danger">Admin</a></div>';
+                }
+?>
     <div class="container-fluid">
         <form action="#" method="post" class="form-inline justify-content-center">
             <label for="serviceType" class="mr-2">Kaj iščete danes:</label>
@@ -38,7 +43,7 @@ include_once 'baza/baza.php';
                 <option value="keramicar">Keramičarji</option>
             </select>
             <label for="serviceType" class="mr-2">Kraj:</label>
-            <select name="kraj" required>
+            <select id="serviceType" name="kraj" class="form-control mr-2" required>
             <?PHP
             $sqlKraji="SELECT * FROM kraji";
             $kraji=mysqli_query($link,$sqlKraji);
@@ -85,7 +90,7 @@ include_once 'baza/baza.php';
                 echo '</div>'; // End of slideshow container
                 echo '<div class="pisava"><div class="ime">'.$prikaz['ime'].' '.$prikaz['priimek'].'</div>';
                 echo $prikaz['dodatki'];
-                echo '</div></div>';
+                echo '</div><a href="komunikacija/message.php?id='.$prikaz['id'].'">Kontaktiraj</a></div>';
                 echo '</div>';
             }
         } else {

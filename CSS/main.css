@@ -1,6 +1,31 @@
-/* Custom CSS for background color */
-.custom-bg {
-    background-color: #f8b400; /* Change this to your desired color */
-    padding: 20px; /* Add some padding for better appearance */
-    border-radius: 10px; /* Optional: Add rounded corners */
+.settings{
+    width: 50px;
+    height: 50px;
 }
+body {
+    background-color: #f8f9fa;
+}
+.header {
+    background-color: #fd7e14;
+    color: white;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+.header h1 {
+    margin-left: 15px;
+}
+  .header .user-info {
+    margin-top: 10px;
+  }
+  .header .user-info img.settings {
+    width: 24px;
+    height: 24px;
+  }
+  .header .btn-primary {
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+  }
+  .header .btn-primary:hover {
+    background-color: #e76d10;
+    border-color: #e76d10;
+  }
