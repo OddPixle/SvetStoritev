@@ -94,7 +94,7 @@ include_once 'baza/baza.php';
                 echo '</div>'; // End of slideshow container
                 echo '<div class="pisava"><div class="ime">'.$prikaz['ime'].' '.$prikaz['priimek'].'</div>';
                 echo $prikaz['dodatki'];
-                echo '</div><a href="komunikacija/message.php?id='.$prikaz['id'].'">Kontaktiraj</a></div>';
+                echo '</div><a href="ponudbe/poslji_ponudbo.php?id='.$prikaz['id'].'" class="btn btn-primary">Pošlji ponudbo</a></div>';
                 echo '</div>';
             }
         } else {

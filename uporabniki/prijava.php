@@ -16,6 +16,7 @@ if (filter_var($e, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['priimek'] = $row['priimek'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['rank']=$row['rank'];
+                $_SESSION['id']=$row['id'];
                 header("Location: ../index.php");
             } else {
                 echo "Nepravilni podatki";

@@ -1,0 +1,24 @@
+body {
+    background-color: #f8f9fa;
+}
+.container {
+    max-width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #fd7e14;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    color: #fd7e14;
+}
+.btn-custom {
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+    color: white;
+}
+.btn-custom:hover {
+    background-color: #e76d10;
+    border-color: #e76d10;
+}
