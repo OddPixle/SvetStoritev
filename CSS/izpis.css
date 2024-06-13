@@ -1,0 +1,71 @@
+body {
+    background-color: #f8f9fa;
+}
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #fd7e14;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1, h2 {
+    color: #fd7e14;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #fd7e14;
+    color: white;
+}
+tr:nth-child(even):hover {
+    background-color: #fd7e14;
+}
+form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+input[type="submit"] {
+    background-color: #fd7e14;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #e76d10;
+}
+a {
+    color: #fd7e14;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

@@ -30,10 +30,14 @@ include_once 'baza/baza.php';
             ?>
         </div>
     </div>
-<?PHP
-                if(isset($_SESSION['rank'])&&$_SESSION['rank']==='admin'){
-                    echo '<div class=".container-admin"><a href="admin/admin.php" class="btn btn-danger">Admin</a></div>';
-                }
+<?PHP           
+                if(isset($_SESSION['rank'])&&$_SESSION['rank']==='admin'){?>
+                <div class="d-flex justify-content-center align-items-center full-height">
+                <div class="btn-container">
+                    <div class=".container-admin"><a href="admin/admin.php" class="btn btn-danger">Admin</a></div>
+                    </div>
+                    </div>
+                <?PHP }
 ?>
     <div class="container-fluid">
         <form action="#" method="post" class="form-inline justify-content-center">
